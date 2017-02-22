@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return "Hello World";
+Route::get('/', 'PostController@index');
+
+Route::get('/test', function(){
+    \App\Post::create([
+        'title' => 'Second Post',
+        'body' => 'Hello world',
+        'user_id' => 1,
+        'publish_date' => \Carbon\Carbon::now()
+    ]);
+
+    return 'It worked!';
 });
