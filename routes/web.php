@@ -23,3 +23,6 @@ Route::get('/test', function(){
 
     return 'It worked!';
 });
+
+Route::get('/post/create', 'PostController@create');
+Route::post('/post/create', 'PostController@store');
