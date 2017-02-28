@@ -24,5 +24,9 @@ Route::get('/test', function(){
     return 'It worked!';
 });
 
-Route::get('/post/create', 'PostController@create');
-Route::post('/post/create', 'PostController@store');
+Route::get('/post/create', 'PostController@create')->middleware('auth');
+Route::post('/post/create', 'PostController@store')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -18,8 +19,13 @@ class PostController extends Controller
         return view('blog.create');
     }
 
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
-        Post::create($request->all());
+        $post = new Post;
+        $post->fill($request->all());
+        $post->user()->associate($request->user());
+        $post->save();
+
+        return redirect('/');
     }
 }
