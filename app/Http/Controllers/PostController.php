@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(2);
         return view('blog.index', compact('posts'));
     }
 
@@ -26,6 +26,17 @@ class PostController extends Controller
         $post->user()->associate($request->user());
         $post->save();
 
+        return redirect('/');
+    }
+
+    public function show(Post $post)
+    {
+       return view('blog.show', compact('post'));
+    }
+
+    public function delete(Post $post)
+    {
+        $post->delete();
         return redirect('/');
     }
 }

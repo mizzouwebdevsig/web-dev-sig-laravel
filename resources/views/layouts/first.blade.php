@@ -11,6 +11,5 @@
     <div class="page-content">
         @yield('content')
     </div>
-    div.test.test1#hello
 </body>
 </html>
